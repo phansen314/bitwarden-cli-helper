@@ -54,3 +54,13 @@ bwg github              # copies password
 bwg username github     # copies username
 bwg totp github         # copies TOTP code
 ```
+
+### `bwgen [length|args...]` — Generate a password
+
+Generates a password and copies it to the clipboard. With no arguments, generates a 20-character password using uppercase, lowercase, numbers, and special characters (`-ulns`). A single argument sets the length. Multiple arguments are passed directly to `bw generate`.
+
+```bash
+bwgen                   # 20-char password with -ulns
+bwgen 32                # 32-char password with -ulns
+bwgen -ul --length 12   # custom: uppercase + lowercase, 12 chars
+```

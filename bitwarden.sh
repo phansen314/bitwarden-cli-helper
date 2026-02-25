@@ -46,3 +46,21 @@ bwg() {
   bw get "$object" "$term" | xclip -sel clip
   echo "Copied $object to clipboard for: $term"
 }
+
+# bwgen — Generate a password and copy it to the clipboard.
+# Usage: bwgen              — generates a 20-char password with -ulns
+#        bwgen <length>     — generates a password of given length with -ulns
+#        bwgen <args...>    — passes all arguments directly to `bw generate`
+#   Example: bwgen
+#   Example: bwgen 32
+#   Example: bwgen -ul --length 12
+bwgen() {
+  if [ $# -eq 0 ]; then
+    bw generate -ulns --length 20 | xclip -sel clip
+  elif [ $# -eq 1 ]; then
+    bw generate -ulns --length "$1" | xclip -sel clip
+  else
+    bw generate "$@" | xclip -sel clip
+  fi
+  echo "Generated password copied to clipboard."
+}
